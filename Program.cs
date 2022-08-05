@@ -7,7 +7,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string data = Order("100 111000 11100  40 8 54 91 164 147 67 176 430372 58052 175432");
+            string data = Order(" 480205  263701 480205 ");
 
             Console.WriteLine(data);
            
@@ -67,8 +67,9 @@ namespace ConsoleApp1
                                 long temp = listOfNumber[j];
                                 listOfNumber[j] = listOfNumber[i];
                                 listOfNumber[i] = temp;
+                                break;
                             }
-                            if (firstNum[k] < secondNum[k])
+                            else if(firstNum[k] < secondNum[k])
                             {
                                 break;
                             }
