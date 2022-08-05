@@ -7,9 +7,11 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string data = Order("3 16 9 38 95 1131268 49455 347464 59544965313 496636983114762 85246814996697");
+            string data = Order("100 111000 11100  40 8 54 91 164 147 67 176 430372 58052 175432");
 
             Console.WriteLine(data);
+           
+           
             
 
 
@@ -54,13 +56,23 @@ namespace ConsoleApp1
                     {
                         firstNumber = listOfNumber[i];
                         secondNumber = listOfNumber[j];
-                        long firstNumDigit = FindFirstDigit(firstNumber);
-                        long secondNumDigit = FindFirstDigit(secondNumber);
-                        if(firstNumDigit > secondNumDigit)
+                        long[] firstNum = GetLongArray(firstNumber);
+                        long[] secondNum = GetLongArray(secondNumber);
+
+                        
+                        for (int k= 0; k < firstNum.Length&&k< secondNum.Length ; k++)
                         {
-                            long temp = listOfNumber[j];
-                            listOfNumber[j] = listOfNumber[i];
-                            listOfNumber[i] = temp;
+                            if(firstNum[k] > secondNum[k])
+                            {
+                                long temp = listOfNumber[j];
+                                listOfNumber[j] = listOfNumber[i];
+                                listOfNumber[i] = temp;
+                            }
+                            if (firstNum[k] < secondNum[k])
+                            {
+                                break;
+                            }
+
                         }
                     }
                 }
@@ -78,6 +90,17 @@ namespace ConsoleApp1
                 number /= 10;
             }
             return number;
+        }
+        static long[] GetLongArray(long num)
+        {
+            List<long> listOfInts = new List<long>();
+            while (num > 0)
+            {
+                listOfInts.Add(num % 10);
+                num = num / 10;
+            }
+            listOfInts.Reverse();
+            return listOfInts.ToArray();
         }
     }
 }
