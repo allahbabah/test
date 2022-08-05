@@ -7,7 +7,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string data = Order("300000000 111");
+            string data = Order("3 16 9 38 95 1131268 49455 347464 59544965313 496636983114762 85246814996697");
 
             Console.WriteLine(data);
             
@@ -17,36 +17,36 @@ namespace ConsoleApp1
         }
         static string Order(string input)
         {
-            List<int> listOfNumber = new List<int>();
+            List<long> listOfNumber = new List<long>();
             string result;
             string [] numbers = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < numbers.Length; i++)
             {
-                listOfNumber.Add(int.Parse(numbers[i]));
+                listOfNumber.Add(long.Parse(numbers[i]));
             }
             for (int i = 0; i < listOfNumber.Count-1; i++)
             {
                 for (int j = i+1; j < listOfNumber.Count; j++)
                 {
-                    int sumFirstNum = 0; 
-                    int sumSecondNum = 0;
-                    int firstNumber = listOfNumber[i];
-                    int secondNumber = listOfNumber[j];
+                    long sumFirstNum = 0; 
+                    long sumSecondNum = 0;
+                    long firstNumber = listOfNumber[i];
+                    long secondNumber = listOfNumber[j];
                     while (firstNumber > 0) 
                     {
-                        int digit = firstNumber % 10;
+                        long digit = firstNumber % 10;
                         sumFirstNum += digit;
                         firstNumber /= 10;
                     }
                     while (secondNumber > 0)
                     {
-                        int digit = secondNumber % 10;
+                        long digit = secondNumber % 10;
                         sumSecondNum += digit;
                         secondNumber /= 10;
                     }
                     if (sumFirstNum > sumSecondNum)
                     {
-                        int temp = listOfNumber[j];
+                        long temp = listOfNumber[j];
                         listOfNumber[j] = listOfNumber[i];
                         listOfNumber[i] = temp;
                     }
@@ -54,11 +54,11 @@ namespace ConsoleApp1
                     {
                         firstNumber = listOfNumber[i];
                         secondNumber = listOfNumber[j];
-                        double firstNumDigit = FindFirstDigit(firstNumber);
-                        double  secondNumDigit = FindFirstDigit(secondNumber);
+                        long firstNumDigit = FindFirstDigit(firstNumber);
+                        long secondNumDigit = FindFirstDigit(secondNumber);
                         if(firstNumDigit > secondNumDigit)
                         {
-                            int temp = listOfNumber[j];
+                            long temp = listOfNumber[j];
                             listOfNumber[j] = listOfNumber[i];
                             listOfNumber[i] = temp;
                         }
@@ -71,7 +71,7 @@ namespace ConsoleApp1
 
             return result;
         }
-        static int FindFirstDigit (int number)
+        static long FindFirstDigit (long number)
         {
             while (number >= 10)
             {
