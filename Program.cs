@@ -7,7 +7,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string data = Order("45 34 24 108 76 58 64 130 80");
+            string data = Order("300000000 111");
 
             Console.WriteLine(data);
             
@@ -54,8 +54,8 @@ namespace ConsoleApp1
                     {
                         firstNumber = listOfNumber[i];
                         secondNumber = listOfNumber[j];
-                        double firstNumDigit = (firstNumber / Math.Pow(10, Math.Log10(firstNumber)));
-                        double  secondNumDigit = (secondNumber / Math.Pow(10, Math.Log10(secondNumber)));
+                        double firstNumDigit = FindFirstDigit(firstNumber);
+                        double  secondNumDigit = FindFirstDigit(secondNumber);
                         if(firstNumDigit > secondNumDigit)
                         {
                             int temp = listOfNumber[j];
@@ -70,6 +70,14 @@ namespace ConsoleApp1
 
 
             return result;
+        }
+        static int FindFirstDigit (int number)
+        {
+            while (number >= 10)
+            {
+                number /= 10;
+            }
+            return number;
         }
     }
 }
